@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Фотограф Дмитрий Суворов — портфолио</title>
+    <meta
+      name="description"
+      content="Минималистичное портфолио фотографа: художественная съемка, проект Счастье в обыденности, журнал My way back home."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="#top">Suvorov Dmitry Photography</a>
+        <nav class="nav">
+          <a href="#fine-art">Художественная съемка</a>
+          <a href="#about">Обо мне</a>
+          <a href="#contact">Контакты</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section id="fine-art" class="fullscreen-section">
+        <div class="slider" data-slider>
+          <div class="slides">
+            <article class="slide" style="--slide-image: url('images/DSC08662.jpg')">
+              <div class="slide-caption">
+                <p class="eyebrow">Художественная съемка</p>
+                <p class="lead">Свет, жест, фактура и свет</p>
+              </div>
+            </article>
+            <article class="slide" style="--slide-image: url('images/DSC08605_обработано.jpg')">
+              <div class="slide-caption">
+                <p class="eyebrow">Художественная съемка</p>
+                <p class="lead">Непринужденность и естественность</p>
+              </div>
+            </article>
+            <article class="slide" style="--slide-image: url('images/DSC08797.jpg')">
+              <div class="slide-caption">
+                <p class="eyebrow">Художественная съемка</p>
+                <p class="lead">Наблюдения за движением и светом</p>
+              </div>
+            </article>
+          </div>
+          <button class="slider-button prev" data-slider-prev aria-label="Предыдущий слайд">
+            ←
+          </button>
+          <button class="slider-button next" data-slider-next aria-label="Следующий слайд">
+            →
+          </button>
+          <div class="slider-dots" data-slider-dots></div>
+        </div>
+      </section>
+
+      <section id="about" class="minimal-section">
+        <div class="section-content about-layout">
+          <div>
+            <p class="eyebrow">Обо мне</p>
+
+            <br>
+            <p class="lead">
+              Добрый день! Меня зовут Дима, и я фотограф. Автор сообщества "Счастье в обыденности". 
+              Работаю на стыке документального и художественного жанров. Мне важны
+              естественный свет, простые жесты и честные истории. Снимаю индивидуальный портрет, иногда репортаж.
+            </p>
+            <p class="meta">
+              Доступен для съемок в Москве. Иногда снимаю в Санкт‑Петербурге. Открыт к коллаборациям,
+              выставкам и редакционным заданиям.
+            </p>
+          </div>
+          <div class="about-photo">
+            <img src="images/about.jpeg" alt="Портрет фотографа" />
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="minimal-section alt">
+        <div class="section-content contact-grid">
+          <div>
+            <p class="eyebrow">Контакты</p>
+            <h2>Давайте обсудим проект</h2>
+            <p class="lead">
+              Для съемок и сотрудничества напишите на почту или оставьте
+              сообщение.
+            </p>
+            <div class="contact-details">
+              <a href="mailto:suvorovdr@yandex.ru">suvorovdr@yandex.ru</a>
+              <a href="https://t.me/happiness_between_us" target="_blank" rel="noreferrer">
+                Telegram: @happiness_between_us
+              </a>
+              <a
+                href="https://www.instagram.com/p/DOOuSGfjGgz/?igsh=ZHRtZ2lueWNhMW8z"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Instagram: @happiness_between_us
+              </a>
+              <span>Москва · Санкт‑Петербург</span>
+            </div>
+          </div>
+          <form
+            class="contact-form"
+            method="post"
+            action="https://formsubmit.co/suvorovdr@yandex.ru"
+            data-contact-form
+          >
+            <label>
+              Имя
+              <input type="text" name="name" placeholder="Как к вам обращаться" />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" />
+            </label>
+            <label>
+              Сообщение
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="Коротко о проекте или идее"
+              ></textarea>
+            </label>
+            <input type="hidden" name="_subject" value="Новая заявка с сайта" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <button type="submit">Отправить</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2026 Дмитрий Суворов</span>
+      </div>
+    </footer>
+
+    <script>
+      const sliders = document.querySelectorAll("[data-slider]");
+
+      sliders.forEach((slider) => {
+        const track = slider.querySelector(".slides");
+        const slides = Array.from(track?.children || []);
+        const prev = slider.querySelector("[data-slider-prev]");
+        const next = slider.querySelector("[data-slider-next]");
+        const dots = slider.querySelector("[data-slider-dots]");
+
+        if (!track || slides.length === 0) {
+          return;
+        }
+
+        const buildDots = () => {
+          if (!dots) return;
+          dots.innerHTML = "";
+          slides.forEach((_, index) => {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "dot";
+            dot.setAttribute("aria-label", `Слайд ${index + 1}`);
+            dot.addEventListener("click", () => scrollToSlide(index));
+            dots.appendChild(dot);
+          });
+        };
+
+        const scrollToSlide = (index) => {
+          const width = track.clientWidth;
+          track.scrollTo({ left: width * index, behavior: "smooth" });
+        };
+
+        const setActiveDot = () => {
+          if (!dots) return;
+          const index = Math.round(track.scrollLeft / track.clientWidth);
+          const dotItems = Array.from(dots.children);
+          dotItems.forEach((dot, dotIndex) => {
+            dot.classList.toggle("active", dotIndex === index);
+          });
+        };
+
+        buildDots();
+        setActiveDot();
+
+        prev?.addEventListener("click", () => {
+          const index = Math.max(0, Math.round(track.scrollLeft / track.clientWidth) - 1);
+          scrollToSlide(index);
+        });
+
+        next?.addEventListener("click", () => {
+          const maxIndex = slides.length - 1;
+          const index = Math.min(
+            maxIndex,
+            Math.round(track.scrollLeft / track.clientWidth) + 1
+          );
+          scrollToSlide(index);
+        });
+
+        track.addEventListener("scroll", () => {
+          window.requestAnimationFrame(setActiveDot);
+        });
+
+        window.addEventListener("resize", setActiveDot);
+      });
+
+      const contactForm = document.querySelector("[data-contact-form]");
+      if (contactForm) {
+        const status = contactForm.querySelector(".form-status");
+        const submitButton = contactForm.querySelector("button[type='submit']");
+
+        contactForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          if (submitButton) submitButton.disabled = true;
+          if (status) status.textContent = "Отправляем...";
+
+          const formData = new FormData(contactForm);
+          const endpoint = contactForm.action.replace(
+            "https://formsubmit.co/",
+            "https://formsubmit.co/ajax/"
+          );
+
+          try {
+            const response = await fetch(endpoint, {
+              method: "POST",
+              body: formData,
+              headers: { Accept: "application/json" },
+            });
+
+            if (response.ok) {
+              contactForm.reset();
+              if (status) status.textContent = "Сообщение отправлено. Спасибо!";
+            } else {
+              if (status) status.textContent = "Не удалось отправить. Попробуйте позже.";
+            }
+          } catch (error) {
+            if (status) status.textContent = "Ошибка сети. Проверьте подключение.";
+          } finally {
+            if (submitButton) submitButton.disabled = false;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
